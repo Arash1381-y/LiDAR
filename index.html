@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
+    <title>Sketch</title>
+
+    <script src="./libraries/p5.min.js"></script>
+    <script src="./libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <script src="sketch.js"></script>
+
+    <div id="canvas-container">
+      <div id="p5-container"></div>
+
+      <div id="lidar-container">
+        <div>
+          <svg id="lidar-map" width="1000" height="500">
+          </svg>
+          <button onclick="activateLidar()">activate Lidar</button>
+          <button onclick="clearObjects()">Clear Items</button>
+        </div>
+      </div>
+    </div>
+    <style>
+      svg {
+        /* border: 1px solid black;
+        height: 500px !important;
+        margin: 0; */
+      }
+      canvas {
+        /* border: 1px solid black;
+        height: 500px !important;
+        width: 500px !important;
+        margin: 0; */
+      }
+      div {
+        /* display: flex;
+        align-items: center; */
+      }
+
+      #lidar-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+
+      *{
+        margin: 0;
+      }
+    </style>
+  </body>
+</html>
