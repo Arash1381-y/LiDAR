@@ -2,55 +2,94 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sketch</title>
 
     <script src="./libraries/p5.min.js"></script>
     <script src="./libraries/p5.sound.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@flatten-js/core@1.6.1/dist/main.umd.min.js"></script>
   </head>
 
   <body>
-    <script src="sketch.js"></script>
+    <script src="shared.js"></script>
+    <script src="canvas.js"></script>
 
     <div id="canvas-container">
-      <div id="p5-container"></div>
+      <button id="camera-toggle" onclick="toggleCamera()"></button>
 
-      <div id="lidar-container">
-        <div>
-          <svg id="lidar-map" width="1000" height="500">
-          </svg>
-          <button onclick="activateLidar()">activate Lidar</button>
-          <button onclick="clearObjects()">Clear Items</button>
-        </div>
+      <div id="normal-view-container"></div>
+
+      <div id="top-view-container">
+        <svg
+          onclick="activateLidar()"
+          id="lidar-map"
+          width="500"
+          height="500"
+        ></svg>
+        <button onclick="activateLidar()">activate Lidar</button>
+        <button onclick="clearObjects()">Clear Items</button>
       </div>
     </div>
-    <style>
-      svg {
-        /* border: 1px solid black;
-        height: 500px !important;
-        margin: 0; */
-      }
-      canvas {
-        /* border: 1px solid black;
-        height: 500px !important;
-        width: 500px !important;
-        margin: 0; */
-      }
-      div {
-        /* display: flex;
-        align-items: center; */
-      }
-
-      #lidar-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
+    <script src="webgl.js"></script>
 
 
-      *{
-        margin: 0;
-      }
-    </style>
+
   </body>
+
+  <style>
+    #lidar-map {
+      border: 1px solid black;
+      /* border-radius: 100%; */
+      position: fixed;
+      /* right: 15px;
+      top: 15px; */
+      right: 20%;
+      top: 20%;
+    }
+
+    #normal-view-container {
+      display: none;
+    }
+    #top-view-container {
+      position: fixed;
+      z-index: 10;
+      /* display: none; */
+      /* width: 100vh;
+      height: 100vh; */
+    }
+
+    #camera-toggle {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+
+      display: inline-block;
+      outline: none;
+
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 14px 24px;
+      border: none;
+      transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s,
+        -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+      background: linear-gradient(
+        to right,
+        rgb(230, 30, 77) 0%,
+        rgb(227, 28, 95) 50%,
+        rgb(215, 4, 102) 100%
+      );
+      color: #fff;
+
+      display: none !important;
+    }
+
+    * {
+      margin: 0;
+    }
+  </style>
+
+
 </html>
