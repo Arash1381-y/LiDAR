@@ -28,12 +28,32 @@ const DEFAULT_CAMERA_POS = [0, -100, 500];
 let camera;
 let lidarMap;
 
+let objects;
 
-let scene1 = [
-]
+function scene1() {
+
+    objects = [
+    { x: SQUERE_SIZE, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [0, 0, 0] },
+    { x: SQUERE_SIZE * -1, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [0, 0, 0] },
+    // { x: -1 * SQUERE_SIZE, y: -1.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: 0, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: 0, y: -1.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: 0, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: SQUERE_SIZE, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: -1 * SQUERE_SIZE, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    ]
+}
 
 let scenes = [
-
+    objects = [
+    { x: SQUERE_SIZE, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: -1 * SQUERE_SIZE, y: -1.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: 0, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: 0, y: -1.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: 0, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: SQUERE_SIZE, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: -1 * SQUERE_SIZE, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    ]
 ]
 
 function signs() {
@@ -73,7 +93,6 @@ function light() {
     ]
 }
 
-let objects;
 
 class LidarMap {
   constructor(node, camera) {
