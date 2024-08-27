@@ -33,7 +33,12 @@ let objects;
 function scene1() {
 
     objects = [
-    { x: SQUERE_SIZE, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [0, 0, 0] },
+      // right obstacle
+    { x: SQUERE_SIZE, y: -0.5 * SQUERE_SIZE, z: -300 - SQUERE_SIZE, size: SQUERE_SIZE, color: [100, 120, 52] },
+    { x: 0, y: -0.5 * SQUERE_SIZE, z: -300 - SQUERE_SIZE, size: SQUERE_SIZE, color: [100, 120, 52] },
+    { x: SQUERE_SIZE, y: -1.5 * SQUERE_SIZE, z: -300 - SQUERE_SIZE, size: SQUERE_SIZE, color: [100, 120, 52] },
+    { x: 0, y: -1.5 * SQUERE_SIZE, z: -300 - SQUERE_SIZE, size: SQUERE_SIZE, color: [100, 120, 52] },
+
     { x: SQUERE_SIZE * -1, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [0, 0, 0] },
     // { x: -1 * SQUERE_SIZE, y: -1.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
     { x: 0, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
