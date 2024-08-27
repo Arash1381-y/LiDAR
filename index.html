@@ -15,7 +15,7 @@
     <script src="canvas.js"></script>
 
     <div id="canvas-container">
-      <button id="camera-toggle" onclick="toggleCamera()"></button>
+      <!-- <button id="camera-toggle" onclick="toggleCamera()"></button> -->
 
       <div id="normal-view-container"></div>
 
@@ -26,8 +26,13 @@
           width="500"
           height="500"
         ></svg>
-        <button onclick="activateLidar()">activate Lidar</button>
-        <button onclick="clearObjects()">Clear Items</button>
+        <!-- <button onclick="activateLidar()">activate Lidar</button>
+        <button onclick="clearObjects()">Clear Items</button> -->
+        <div class="scenario">
+          <button onclick="signs()"> علائم</button>
+          <button onclick="light()"> چراغ</button>
+          <button onclick="scene1()"> سناریو ۱</button>
+        </div>
       </div>
     </div>
     <script src="webgl.js"></script>
@@ -36,7 +41,25 @@
 
   </body>
 
+  
+
   <style>
+    .scenario {
+      background-color: aliceblue;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scenario > button {
+        background-color: #008CBA;;
+        border: none;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        margin: 0.2rem;
+    }
+
     #lidar-map {
       border: 1px solid black;
       /* border-radius: 100%; */
@@ -45,17 +68,17 @@
       top: 15px; */
       right: 20%;
       top: 20%;
+      display: none;
     }
 
     #normal-view-container {
-      display: none;
+      /* display: none; */
+      position:fixed;
+      /* z-index: -1000; */
     }
     #top-view-container {
       position: fixed;
-      z-index: 10;
-      /* display: none; */
-      /* width: 100vh;
-      height: 100vh; */
+      z-index: 10; 
     }
 
     #camera-toggle {
@@ -89,7 +112,5 @@
     * {
       margin: 0;
     }
-  </style>
-
-
+</style>
 </html>

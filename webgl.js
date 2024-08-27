@@ -7,7 +7,7 @@ function setup() {
   debugMode(GRID, GRID_SIZE, GRID_DIV, 0, 0, 0);
   camera = createCamera();
   camera.setPosition(...DEFAULT_CAMERA_POS);
-  camera.lookAt(0, -50, 0);
+  camera.lookAt(0, -100, 0);
 }
 function draw() {
   background(255);
@@ -18,10 +18,10 @@ function draw() {
     camera.pan(-1 * delta * 1.5);
     lidarMap.updatePlayerLocation();
   } else if (keyIsDown(UP_ARROW)) {
-    camera.move(0, 0, -150 * delta);
+    camera.move(0, 0, -150 * 2 * delta);
     lidarMap.updatePlayerLocation();
   } else if (keyIsDown(DOWN_ARROW)) {
-    camera.move(0, 0, 150 * delta);
+    camera.move(0, 0, 150 * 2 * delta);
     lidarMap.updatePlayerLocation();
   }
 
@@ -32,7 +32,7 @@ function draw() {
     r_x = o.x;
     r_y = o.y;
     r_z = o.z;
-    // noStroke();
+    noStroke();
     box(o.size);
   })
 }

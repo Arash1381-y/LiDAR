@@ -28,17 +28,19 @@ const activateLidar = () => {
     const { point, circle, segment, Arc } = Flatten;
 
     if (currentCircle < totalCircles) {
-      const radius = (currentCircle + 1) * 50;
+      const radius = (currentCircle + 1) * 55;
       const strokeColor = interpolateColor(radius, 10, totalCircles * 10); // Interpolate color based on radius
-
+      let newPartitions = [];
       partitions.forEach((partition) => {
-        const startAngle = partition[0];
-        const endAngle = partition[1];
+        const startAngle = (partition[0] * Math.PI) / 180;
+        const endAngle = (partition[1] * Math.PI) / 180;
+
 
         const center = point(playerX, playerY);
         const pArc = new Arc(center, radius, startAngle, endAngle, 1);
 
-        const points = [];
+        let points = [];
+        const angles = [];
         lidarMap.objects.forEach((obj) => {
           const x = obj.x;
           const y = obj.y;
@@ -50,30 +52,77 @@ const activateLidar = () => {
 
           s1 = segment(p1, p2);
           s2 = segment(p1, p3);
-          s3 = segment(p2, p3);
-          s4 = segment(p3, p4);
+          s3 = segment(p4, p3);
+          s4 = segment(p4, p2);
 
           points.push(...pArc.intersect(s1));
           points.push(...pArc.intersect(s2));
           points.push(...pArc.intersect(s3));
           points.push(...pArc.intersect(s4));
+
+          console.log(points);
+          console.log(p1, p2, p3, p4);
         });
 
-        console.log(p1, p2, p3, p4);
-        console.log(points);
+        // // Compute the angle between center and each intersection point
+        // points.forEach((intersectionPoint) => {
+        //   const angle = Math.atan2(
+        //     intersectionPoint.y - center.y,
+        //     intersectionPoint.x - center.x
+        //   );
+        //   const angleInDegrees = angle * (180 / Math.PI); // Convert to degrees if needed
+        //   angles.push(360 + angleInDegrees); // Store the angle
+        // });
 
-        
+        console.log("cosi")
+        console.log(endAngle)
+        console.log( Math.cos((endAngle * Math.PI) / 180))
+        s1 = point(
+          playerX + radius * Math.cos(startAngle),
+          playerY + radius * Math.sin(startAngle)
+        );
 
-        const arc = {
-          x1: playerX + radius * Math.cos((startAngle * Math.PI) / 180),
-          y1: playerY + radius * Math.sin((startAngle * Math.PI) / 180),
-          x2: playerX + radius * Math.cos((endAngle * Math.PI) / 180),
-          y2: playerY + radius * Math.sin((endAngle * Math.PI) / 180),
-          radius: radius,
-          stroke: strokeColor,
-        };
+        s2 = point(
+          playerX + radius * Math.cos(endAngle),
+          playerY + radius * Math.sin(endAngle)
+        );
+        points = [s1, ...points.reverse(), s2];
 
-        lidarMap.addLidar(arc);
+        // let startPoint = { x: playerX - radius, y: playerY };
+        let nextPoint, startPoint;
+        for (let i = 0; i < points.length; i++) {
+          if (i % 2 == 0) {
+            startPoint = points[i];
+          } else {
+            nextPoint = points[i];
+
+            const arc = {
+              x1: startPoint.x,
+              y1: startPoint.y,
+              x2: nextPoint.x,
+              y2: nextPoint.y,
+              radius: radius,
+              stroke: strokeColor,
+            };
+            lidarMap.addLidar(arc);
+          }
+        }
+
+        nextPoint =
+          // You can now use the angles array for further processing
+          console.log(points);
+        console.log(angles); // For debugging or further use
+
+        // const arc = {
+        //   x1: playerX + radius * Math.cos((startAngle * Math.PI) / 180),
+        //   y1: playerY + radius * Math.sin((startAngle * Math.PI) / 180),
+        //   x2: playerX + radius * Math.cos((endAngle * Math.PI) / 180),
+        //   y2: playerY + radius * Math.sin((endAngle * Math.PI) / 180),
+        //   radius: radius,
+        //   stroke: strokeColor,
+        // };
+
+        // lidarMap.addLidar(arc);
       });
 
       currentCircle++; // Increment the circle counter
@@ -81,5 +130,5 @@ const activateLidar = () => {
     }
   };
 
-  addCircle(currentCircle, [[180, 360]]);
+  addCircle(currentCircle, [[0, 360]]);
 };

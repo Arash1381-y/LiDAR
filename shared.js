@@ -14,7 +14,7 @@ let normalViewCanvas;
 const brownColor = [165, 42, 42];
 
 ///////////// GRID SIZE ///////////////
-const GRID_DIV = 40;
+const GRID_DIV = 30;
 
 // let GRID_SIZE = 1000;
 // let SQUERE_SIZE = GRID_SIZE / GRID_DIV;
@@ -23,9 +23,55 @@ let GRID_SIZE, SQUERE_SIZE;
 let canvas_squere_size;
 ///////////////////////////////////////
 
-const DEFAULT_CAMERA_POS = [0, -50, 500];
+
+const DEFAULT_CAMERA_POS = [0, -100, 500];
 let camera;
 let lidarMap;
+
+
+let scene1 = [
+]
+
+let scenes = [
+
+]
+
+function signs() {
+
+    objects = [
+    { x: 0, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: 0, y: -1.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: 0, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: SQUERE_SIZE, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    { x: -1 * SQUERE_SIZE, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 255, 0] },
+    ]
+}
+
+function light() {
+  let color = [255, 0, 0]
+  setInterval(() => {
+    if (color[0] == 255) {
+        color[0] = 0
+        color[1] = 255
+    } else {
+        color[1] = 0
+        color[0] = 255
+    }
+  }, 3000)
+
+    objects = [
+    { x: 0, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: color },
+    { x: SQUERE_SIZE, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: color },
+    { x: 0, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: color },
+    { x: 0, y: -1.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: color },
+    { x: SQUERE_SIZE, y: -1.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: color },
+    { x: 0, y: -0.5 * SQUERE_SIZE, z: -300 + SQUERE_SIZE, size: SQUERE_SIZE, color: color },
+    { x: SQUERE_SIZE, y: -0.5 * SQUERE_SIZE, z: -300 + SQUERE_SIZE, size: SQUERE_SIZE, color: color },
+    { x: 0, y: -0.5 * SQUERE_SIZE, z: -300 + SQUERE_SIZE, size: SQUERE_SIZE, color: color },
+    { x: 0, y: -1.5 * SQUERE_SIZE, z: -300 + SQUERE_SIZE, size: SQUERE_SIZE, color: color },
+    { x: SQUERE_SIZE, y: -1.5 * SQUERE_SIZE, z: -300 + SQUERE_SIZE, size: SQUERE_SIZE, color: color },
+    ]
+}
 
 let objects;
 
@@ -170,14 +216,19 @@ window.onload = () => {
   ];
 
   objects = [
-    { x: 0, y: -25, z: 300, size: 200, color: [255, 0, 0] },
+    // { x: 0, y: -0.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 0, 0] },
+    // { x: 0, y: -1.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 0, 0] },
+    // { x: 0, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 0, 0] },
+    // { x: SQUERE_SIZE, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 0, 0] },
+    // { x: -1 * SQUERE_SIZE, y: -2.5 * SQUERE_SIZE, z: -300, size: SQUERE_SIZE, color: [255, 0, 0] },
+    // { x: 0, y: -1 * SQUERE_SIZE / 2, z: 300 + SQUERE_SIZE, size: SQUERE_SIZE, color: [255, 0, 0] },
     // { x: 100, y: -20, z: 0, size: 40, color: [255, 123, 32] },
     // { x: 200, y: -10, z: 0, size: 20, color: [121, 211, 112] },
     // ...tree,
   ];
 
-  toggleButton = document.getElementById(toggleButtonId);
-  toggleButton.textContent = !topView ? topViewText : normalViewText;
+  // toggleButton = document.getElementById(toggleButtonId);
+  // toggleButton.textContent = !topView ? topViewText : normalViewText;
 
   topViewCanvas = document.getElementById(topViewCanvasId);
   normalViewCanvas = document.getElementById(normalViewCanvasId);
